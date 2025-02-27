@@ -14,7 +14,7 @@
     html, body {
       width: 100%;
       height: 100%;
-      overflow: hidden; /* Impede a rolagem */
+      overflow: hidden;
       font-family: Arial, sans-serif;
     }
 
@@ -104,10 +104,9 @@
       overflow: hidden;
     }
 
-    /* Adicionando imagens aos cards */
     .card-image {
       width: 100%;
-      height: 40%; /* Imagem ocupa 40% do card */
+      height: 40%;
       background-size: cover;
       background-position: center;
       border-top-left-radius: 10px;
@@ -155,13 +154,13 @@
     }
 
     .arrow::before {
-      content: "\276E"; /* Código Unicode para seta esquerda */
+      content: "\276E";
       font-size: 20px;
       font-weight: bold;
     }
 
     .arrow-right::before {
-      content: "\276F"; /* Código Unicode para seta direita */
+      content: "\276F";
     }
 
     .cta-section {
@@ -194,8 +193,8 @@
       bottom: 20px;
       width: 100%;
       padding: 0 20px;
-      font-size: 1.1rem; /* Aumentei o tamanho da fonte aqui */
-      font-weight: bold; /* Negrito */
+      font-size: 1.1rem;
+      font-weight: bold;
       color: #333;
     }
 
@@ -215,14 +214,14 @@
       text-decoration: none;
       margin: 0 15px;
       transition: color 0.3s;
-      font-size: 1.2rem; /* Aumentei o tamanho da fonte aqui também */
-      font-weight: bold; /* Negrito */
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
     .footer-left a:hover, .footer-right a:hover {
       color: #007bff;
     }
-    /* Estilo para os ícones de download */
+
     .download-icons {
       position: absolute;
       top: 20px;
@@ -236,15 +235,69 @@
       height: auto;
       cursor: pointer;
     }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .carousel-container {
+        margin: 150px auto 0;
+      }
+
+      .carousel {
+        flex-direction: column;
+      }
+
+      .card {
+        width: 90%;
+        margin-bottom: 20px;
+        position: relative;
+        transform: rotateY(0) translateX(0) scale(1);
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .download-icons {
+        top: 10px;
+        left: 10px;
+        flex-direction: column;
+      }
+
+      .download-icons img {
+        width: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+      }
+
+      .card {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
   <div class="main-container">
-
- <!-- Ícones de download -->
-
-
-
     <section class="hero">
       <div class="download-icons">
         <a href="https://apps.apple.com/br/app/bwepo/id1234567890" target="_blank">
@@ -262,25 +315,22 @@
       <div class="carousel-container">
         <button class="arrow arrow-left" onclick="moveCarousel(-1)">&#9664;</button>
         <div class="carousel">
-          <div class="card" style="transform: rotateY(-40deg) translateX(-350px) scale(0.8); opacity: 0.5;">
+          <div class="card">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Conecte-se com Pessoas Perto de Você</div>
-            <div class="card-description">No Bwepo, você pode ver quem está próximo a você em um raio de até 1,5 km e iniciar uma conversa no chat.
-                 Diferente de redes sociais tradicionais, aqui as interações são baseadas na sua localização em tempo real, permitindo conexões espontâneas e autênticas.</div>
+            <div class="card-description">Descrição...</div>
           </div>
 
-          <div class="card" style="transform: rotateY(0deg) translateX(0px) scale(1); opacity: 1;">
+          <div class="card">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Participe e Crie Comunidades Baseadas em Interesses</div>
-            <div class="card-description">No Bwepo, você pode entrar ou criar comunidades organizadas por temas como esportes, música, tecnologia, e muito mais. As comunidades filtram a interação entre usuários e grupos,
-                 permitindo que você se conecte com pessoas que compartilham os mesmos interesses. Além disso, cada comunidade tem uma timeline exclusiva, onde os membros podem fazer postagens e interagir como em um fórum.</div>
+            <div class="card-description">Descrição...</div>
           </div>
 
-          <div class="card" style="transform: rotateY(40deg) translateX(350px) scale(0.8); opacity: 0.5;">
+          <div class="card">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Grupos Privados para Conversas em Pequenas Redes</div>
-            <div class="card-description">Crie grupos visíveis apenas para pessoas próximas e inicie conversas com quem está por perto. 
-                Você pode convidar qualquer usuário que esteja no seu raio de proximidade e manter as discussões em um ambiente privado e dinâmico.</div>
+            <div class="card-description">Descrição...</div>
           </div>
         </div>
         <button class="arrow arrow-right" onclick="moveCarousel(1)">&#9654;</button>
@@ -291,7 +341,6 @@
       <p class="footer-text">© 2025 Bwepo - Todos os direitos reservados.</p>
     </section>
 
-    <!-- Rodapé -->
     <div class="footer">
       <div class="footer-left">
         <a href="mailto:contato@bwepo.com">Email: contato@bwepo.com.br</a>
