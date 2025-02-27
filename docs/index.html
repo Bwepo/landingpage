@@ -66,28 +66,27 @@
     }
 
     .carousel-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 320px auto 0;
-      perspective: 1200px;
-    }
-
-    .carousel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease-in-out;
-      width: 100%;
-      position: relative;
-    }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 320px auto 0;
+  perspective: 1200px;
+}
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  position: relative;
+}
 
     .card {
-      width: 450px;
+      width: 35%;
       height: 580px;
       background-color: #373737;
       border-radius: 10px;
@@ -291,6 +290,14 @@
         width: 100%;
         margin-bottom: 15px;
         padding: 10px;
+      }
+
+      .carousel-container {
+        margin-top: 100px;
+      }
+
+      .carousel {
+        flex-direction: column;
       }
     }
 
