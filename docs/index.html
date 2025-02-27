@@ -1,74 +1,332 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bwepo - Em Construção</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-        }
-        h1 {
-            color: #333;
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #555;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #777;
-            line-height: 1.5;
-        }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            background-color: #0070c9;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #005da0;
-        }
-        .footer {
-            font-size: 1rem;
-            color: #888;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bwepo - Página Fixa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Impede a rolagem */
+      font-family: Arial, sans-serif;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background-color: #f2f2f2;
+      justify-content: space-between;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background: url("pexels-freestockpro-1227513.jpg") center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      margin-top: 2%;
+      text-align: center;
+      color: #fff;
+      padding: 0 1rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .carousel-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 320px auto 0;
+      perspective: 1200px;
+    }
+
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      position: relative;
+    }
+
+    .card {
+      width: 450px;
+      height: 580px;
+      background-color: #373737;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-weight: bold;
+      text-align: center;
+      position: absolute;
+      transition: transform 0.5s, opacity 0.5s;
+      color: #fff;
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    /* Adicionando imagens aos cards */
+    .card-image {
+      width: 100%;
+      height: 40%; /* Imagem ocupa 40% do card */
+      background-size: cover;
+      background-position: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .card-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-size: 1.2rem;
+    }
+
+    .arrow {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(50, 50, 50, 0.7);
+      color: #ddd;
+      border: none;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: background 0.3s ease-in-out, transform 0.2s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .arrow:hover {
+      background-color: rgba(50, 50, 50, 0.9);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .arrow-left {
+      left: 15px;
+    }
+
+    .arrow-right {
+      right: 15px;
+    }
+
+    .arrow::before {
+      content: "\276E"; /* Código Unicode para seta esquerda */
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .arrow-right::before {
+      content: "\276F"; /* Código Unicode para seta direita */
+    }
+
+    .cta-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fafafa;
+      margin-top: 50px;
+      padding: 20px 0;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-top: 15px;
+    }
+
+    .card-description {
+      font-size: 1.1rem;
+      padding: 15px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      padding: 0 20px;
+      font-size: 1.1rem; /* Aumentei o tamanho da fonte aqui */
+      font-weight: bold; /* Negrito */
+      color: #333;
+    }
+
+    .footer-left, .footer-right, .footer-center {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-center {
+      text-align: center;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .footer-left a, .footer-right a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+      font-size: 1.2rem; /* Aumentei o tamanho da fonte aqui também */
+      font-weight: bold; /* Negrito */
+    }
+
+    .footer-left a:hover, .footer-right a:hover {
+      color: #007bff;
+    }
+    /* Estilo para os ícones de download */
+    .download-icons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .download-icons img {
+      width: 120px;
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bwepo</h1>
-        <h2>Estamos trabalhando em algo incrível!</h2>
-        <p>Nosso site está em construção, mas em breve você terá acesso ao Bwepo, uma plataforma que vai transformar a forma como você se conecta e interage online.</p>
-        <p>Fique atento! Em breve, você poderá explorar todos os recursos exclusivos que estamos preparando para você.</p>
-        <div class="footer">
-            <p>© 2025 Bwepo - Todos os direitos reservados.</p>
+  <div class="main-container">
+
+ <!-- Ícones de download -->
+
+
+
+    <section class="hero">
+      <div class="download-icons">
+        <a href="https://apps.apple.com/br/app/bwepo/id1234567890" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.bwepo" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+        </a>
+      </div>
+      <div class="hero-text">
+        <h1>Bem-vindo ao Bwepo</h1>
+        <p>Conecte-se e descubra o universo de jogos que preparamos para você.</p>
+      </div>
+
+      <div class="carousel-container">
+        <button class="arrow arrow-left" onclick="moveCarousel(-1)">&#9664;</button>
+        <div class="carousel">
+          <div class="card" style="transform: rotateY(-40deg) translateX(-350px) scale(0.8); opacity: 0.5;">
+            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
+            <div class="card-title">Conecte-se com Pessoas Perto de Você</div>
+            <div class="card-description">No Bwepo, você pode ver quem está próximo a você em um raio de até 1,5 km e iniciar uma conversa no chat.
+                 Diferente de redes sociais tradicionais, aqui as interações são baseadas na sua localização em tempo real, permitindo conexões espontâneas e autênticas.</div>
+          </div>
+
+          <div class="card" style="transform: rotateY(0deg) translateX(0px) scale(1); opacity: 1;">
+            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
+            <div class="card-title">Participe e Crie Comunidades Baseadas em Interesses</div>
+            <div class="card-description">No Bwepo, você pode entrar ou criar comunidades organizadas por temas como esportes, música, tecnologia, e muito mais. As comunidades filtram a interação entre usuários e grupos,
+                 permitindo que você se conecte com pessoas que compartilham os mesmos interesses. Além disso, cada comunidade tem uma timeline exclusiva, onde os membros podem fazer postagens e interagir como em um fórum.</div>
+          </div>
+
+          <div class="card" style="transform: rotateY(40deg) translateX(350px) scale(0.8); opacity: 0.5;">
+            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
+            <div class="card-title">Grupos Privados para Conversas em Pequenas Redes</div>
+            <div class="card-description">Crie grupos visíveis apenas para pessoas próximas e inicie conversas com quem está por perto. 
+                Você pode convidar qualquer usuário que esteja no seu raio de proximidade e manter as discussões em um ambiente privado e dinâmico.</div>
+          </div>
         </div>
+        <button class="arrow arrow-right" onclick="moveCarousel(1)">&#9654;</button>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <p class="footer-text">© 2025 Bwepo - Todos os direitos reservados.</p>
+    </section>
+
+    <!-- Rodapé -->
+    <div class="footer">
+      <div class="footer-left">
+        <a href="mailto:contato@bwepo.com">Email: contato@bwepo.com.br</a>
+      </div>
+      <div class="footer-center">
+        <p>© 2025 Bwepo - Todos os direitos reservados.</p>
+      </div>
+      <div class="footer-right">
+        <a href="/politica-privacidade">Política de Privacidade</a>
+      </div>
     </div>
+  </div>
+
+  <script>
+    let currentIndex = 1;
+    const cards = document.querySelectorAll('.card');
+
+    function updateCards() {
+      const positions = [
+        { rotate: '-40deg', translate: '-350px', scale: '0.8', opacity: '0.5' },
+        { rotate: '0deg', translate: '0px', scale: '1', opacity: '1' },
+        { rotate: '40deg', translate: '350px', scale: '0.8', opacity: '0.5' }
+      ];
+
+      cards.forEach((card, i) => {
+        let posIndex = (i - currentIndex + cards.length) % cards.length;
+        card.style.transform = `rotateY(${positions[posIndex].rotate}) translateX(${positions[posIndex].translate}) scale(${positions[posIndex].scale})`;
+        card.style.opacity = positions[posIndex].opacity;
+      });
+    }
+
+    function moveCarousel(direction) {
+      currentIndex = (currentIndex + direction + cards.length) % cards.length;
+      updateCards();
+    }
+  </script>
 </body>
 </html>
