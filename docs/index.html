@@ -12,11 +12,12 @@
     }
 
     html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  /* Remover height: 100% e overflow: hidden */
+}
 
     .main-container {
       display: flex;
@@ -66,24 +67,25 @@
     }
 
     .carousel-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 320px auto 0;
-  perspective: 1200px;
-}
-.carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-  position: relative;
-}
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 320px auto 0;
+      perspective: 1200px;
+    }
+
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      position: relative;
+    }
 
     .card {
       width: 35%;
@@ -236,17 +238,57 @@
     }
 
     /* Media Queries para responsividade */
-    @media (max-width: 768px) {
+
+    /* Para telas muito grandes (Desktops Grandes) */
+    @media (min-width: 1920px) {
       .hero-text h1 {
-        font-size: 2rem;
+        font-size: 4rem;
       }
 
       .hero-text p {
-        font-size: 1rem;
+        font-size: 1.4rem;
+      }
+
+      .card {
+        width: 32%;
+      }
+
+      .footer {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Para telas grandes (Desktops) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .hero-text h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1.3rem;
+      }
+
+      .card {
+        width: 32%;
+      }
+
+      .footer {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Para telas médias (Tablets) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1.1rem;
       }
 
       .carousel-container {
-        margin: 150px auto 0;
+        margin: 320px auto 0;
       }
 
       .carousel {
@@ -254,10 +296,9 @@
       }
 
       .card {
-        width: 90%;
+        width: 40%;
         margin-bottom: 20px;
-        position: relative;
-        transform: rotateY(0) translateX(0) scale(1);
+        margin-top: 50;
       }
 
       .footer {
@@ -277,6 +318,83 @@
       }
     }
 
+   /* Para telas pequenas (Mobile) */
+@media (max-width: 768px) {
+  /* Ajustando título e parágrafo */
+  .hero-text h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+
+  /* Ocultando as setas do carrossel */
+  .arrow {
+    display: none;
+  }
+
+  /* Ajustando o container do carousel */
+  .carousel-container {
+    margin: 20px auto 0;  /* Reduzindo a margem superior */
+    padding: 0 1rem;      /* Espaçamento lateral */
+    position: relative;
+    max-width: 100%;      /* Para garantir que ocupe a largura total */
+  }
+
+  /* Desfazendo a disposição em carrossel e empilhando os cards verticalmente */
+  .carousel {
+    display: block;       /* Em vez de flex */
+    transform: none;      /* Remove efeitos 3D */
+  }
+
+  .card {
+    position: static;     /* Não fica mais absolute */
+    width: 100%;          /* Cada card ocupa a largura total */
+    max-width: 100%;      /* Garante que não passe do limite */
+    margin: 0 auto 20px;  /* Espaço abaixo de cada card */
+    transform: none;      /* Remove rotação/translação */
+    opacity: 1;           /* Sempre visível */
+    height: auto;         /* Ajusta a altura conforme o conteúdo */
+  }
+
+  .card-image {
+    height: auto;         /* Ajusta a imagem conforme a largura */
+  }
+
+  .card-content {
+    font-size: 1rem;
+  }
+
+  /* Ajustando o footer para telas pequenas */
+  .footer {
+    position: static;     /* Remove position absolute do footer */
+    flex-direction: column;
+    text-align: center;
+    font-size: 1rem;
+    padding: 20px 0;
+  }
+
+  /* Organizando os ícones de download */
+  .download-icons {
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .download-icons img {
+    width: 80px;
+    height: auto;
+  }
+}
+
+
+    /* Para telas muito pequenas (Mobile Pequeno) */
     @media (max-width: 480px) {
       .hero-text h1 {
         font-size: 1.5rem;
@@ -322,31 +440,33 @@
       <div class="carousel-container">
         <button class="arrow arrow-left" onclick="moveCarousel(-1)">&#9664;</button>
         <div class="carousel">
-          <div class="card">
+          <div class="card" style="transform: rotateY(-40deg) translateX(-350px) scale(0.8); opacity: 0.5;">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Conecte-se com Pessoas Perto de Você</div>
-            <div class="card-description">Descrição...</div>
+            <div class="card-description">No Bwepo, você pode ver quem está próximo a você em um raio de até 1,5 km e iniciar uma conversa no chat.
+                 Diferente de redes sociais tradicionais, aqui as interações são baseadas na sua localização em tempo real, permitindo conexões espontâneas e autênticas.</div>
           </div>
 
-          <div class="card">
+          <div class="card" style="transform: rotateY(0deg) translateX(0px) scale(1); opacity: 1;">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Participe e Crie Comunidades Baseadas em Interesses</div>
-            <div class="card-description">Descrição...</div>
+            <div class="card-description">No Bwepo, você pode entrar ou criar comunidades organizadas por temas como esportes, música, tecnologia, e muito mais. As comunidades filtram a interação entre usuários e grupos,
+                 permitindo que você se conecte com pessoas que compartilham os mesmos interesses. Além disso, cada comunidade tem uma timeline exclusiva, onde os membros podem fazer postagens e interagir como em um fórum.</div>
           </div>
 
-          <div class="card">
+          <div class="card" style="transform: rotateY(40deg) translateX(350px) scale(0.8); opacity: 0.5;">
             <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
             <div class="card-title">Grupos Privados para Conversas em Pequenas Redes</div>
-            <div class="card-description">Descrição...</div>
+            <div class="card-description">Crie grupos visíveis apenas para pessoas próximas e inicie conversas com quem está por perto. 
+                Você pode convidar qualquer usuário que esteja no seu raio de proximidade e manter as discussões em um ambiente privado e dinâmico.</div>
           </div>
         </div>
         <button class="arrow arrow-right" onclick="moveCarousel(1)">&#9654;</button>
       </div>
     </section>
 
-    <section class="cta-section">
-      <p class="footer-text">© 2025 Bwepo - Todos os direitos reservados.</p>
-    </section>
+    
+
 
     <div class="footer">
       <div class="footer-left">
