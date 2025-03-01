@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
   <title>Bwepo - Página Fixa</title>
   <style>
     * {
@@ -12,10 +12,12 @@
     }
 
     html, body {
+      height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Evita rolagem horizontal desnecessária */
   /* Remover height: 100% e overflow: hidden */
 }
 
@@ -26,6 +28,7 @@
       height: 100%;
       background-color: #f2f2f2;
       justify-content: space-between;
+      min-height: 100vh; /* Garante que o container principal ocupe pelo menos toda a tela */
     }
 
     .hero {
@@ -34,6 +37,7 @@
       min-height: 100vh;
       background-color: #fff;
       overflow: hidden;
+      flex: 1; /* Faz com que o conteúdo principal ocupe o espaço disponível */
     }
 
     .hero::before {
@@ -190,10 +194,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: absolute;
+      margin-top: auto; /* Mantém o footer sempre no fim */
+      position: relative; /* Remove position absolute */
       bottom: 20px;
       width: 100%;
-      padding: 0 20px;
+      padding: 20px 0;
+      text-align: center;
       font-size: 1.1rem;
       font-weight: bold;
       color: #333;
@@ -236,6 +242,49 @@
       height: auto;
       cursor: pointer;
     }
+   .privacy-policy {
+  display: none; /* Oculto por padrão */
+  width: 100%;
+  min-height: 100vh; /* Ocupa toda a tela */
+  padding: 50px 20px;
+  background: #000; /* Fundo preto */
+  color: #fff; /* Texto branco para contraste */
+  font-size: 1.2rem;
+  line-height: 1.6; 
+  text-align: center;
+  box-shadow: 0px -5px 15px rgba(255, 255, 255, 0.1); /* Sombra suave */
+}
+
+.privacy-policy h2 {
+  margin-bottom: 20px;
+  color: #00aaff; /* Azul vibrante para o título */
+}
+
+.privacy-policy p {
+  max-width: 800px;
+  margin: 0 auto 20px; /* Mantém um bom espaçamento */
+  font-size: 1rem;
+}
+
+.privacy-policy button {
+  display: inline-block;
+  margin: 30px auto;
+  padding: 12px 25px;
+  background-color: #00aaff; /* Azul vibrante */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.privacy-policy button:hover {
+  background-color: #0088cc; /* Azul mais escuro ao passar o mouse */
+  transform: scale(1.05);
+}
+
 
     /* Media Queries para responsividade */
 
@@ -476,10 +525,19 @@
         <p>© 2025 Bwepo - Todos os direitos reservados.</p>
       </div>
       <div class="footer-right">
-        <a href="/politica-privacidade">Política de Privacidade</a>
+        <a href="javascript:void(0);" onclick="togglePrivacyPolicy()">Política de Privacidade</a>
       </div>
     </div>
   </div>
+
+  <!-- Conteúdo da Política de Privacidade -->
+<div id="privacy-policy" class="privacy-policy">
+  <h2>Política de Privacidade</h2>
+  <p>Esta é a seção da política de privacidade do Bwepo. Aqui você pode adicionar o conteúdo completo da sua política.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus auctor ligula id justo pharetra, ac vulputate urna interdum.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+  <button onclick="togglePrivacyPolicy()">Fechar</button>
+</div>
 
   <script>
     let currentIndex = 1;
@@ -503,6 +561,20 @@
       currentIndex = (currentIndex + direction + cards.length) % cards.length;
       updateCards();
     }
+
+    function togglePrivacyPolicy() {
+  let privacyPolicy = document.getElementById("privacy-policy");
+
+  if (privacyPolicy.style.display === "none" || privacyPolicy.style.display === "") {
+    privacyPolicy.style.display = "block"; // Exibe a política
+    privacyPolicy.scrollIntoView({ behavior: "smooth" }); // Rola suavemente até a seção
+  } else {
+    privacyPolicy.style.display = "none"; // Oculta a política
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Volta ao topo ao fechar
+  }
+}
+
+
   </script>
 </body>
 </html>
