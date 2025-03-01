@@ -191,19 +191,20 @@
     }
 
     .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto; /* Mantém o footer sempre no fim */
-      position: relative; /* Remove position absolute */
-      bottom: 20px;
-      width: 100%;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #333;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  position: fixed; /* Fixa o footer na parte inferior da tela */
+  bottom: 0; /* Mantém o footer fixo no rodapé */
+  left: 0;
+  background: #f2f2f2; /* Cor de fundo */
+}
 
     .footer-left, .footer-right, .footer-center {
       display: flex;
@@ -238,7 +239,7 @@
     }
 
     .download-icons img {
-      width: 120px;
+      width: 150px;
       height: auto;
       cursor: pointer;
     }
@@ -475,10 +476,10 @@
     <section class="hero">
       <div class="download-icons">
         <a href="https://apps.apple.com/br/app/bwepo/id1234567890" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+          <img src="app-store-badge.png" alt="App Store">
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.bwepo" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+          <img src="https://logodownload.org/wp-content/uploads/2017/04/disponivel-google-play-badge.png" alt="Google Play">
         </a>
       </div>
       <div class="hero-text">
@@ -531,13 +532,51 @@
   </div>
 
   <!-- Conteúdo da Política de Privacidade -->
-<div id="privacy-policy" class="privacy-policy">
-  <h2>Política de Privacidade</h2>
-  <p>Esta é a seção da política de privacidade do Bwepo. Aqui você pode adicionar o conteúdo completo da sua política.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus auctor ligula id justo pharetra, ac vulputate urna interdum.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-  <button onclick="togglePrivacyPolicy()">Fechar</button>
-</div>
+  <div id="privacy-policy" class="privacy-policy">
+    <h2>Política de Privacidade</h2>
+  
+    <p><strong>Última atualização:</strong> Fevereiro, 2025</p>
+  
+    <p>Bem-vindo ao <strong>Bwepo</strong>! Nossa missão é conectar pessoas e estabelecimentos por meio da geolocalização de forma segura e transparente. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos seus dados pessoais ao utilizar nosso aplicativo.</p>
+  
+    <p>Ao acessar e utilizar o <strong>Bwepo</strong>, você concorda com os termos desta Política de Privacidade.</p>
+  
+    <h3>1. Dados Coletados</h3>
+  
+    <h4>1.1 Dados fornecidos pelo usuário</h4>
+    <p>O Bwepo coleta informações como nome, e-mail e senha para a criação da conta. Também é possível adicionar uma foto de perfil e uma biografia, caso o usuário deseje. Para contas comerciais, podem ser solicitados dados adicionais, como CNPJ, nome do responsável e telefone de contato.</p>
+  
+    <h4>1.2 Dados coletados automaticamente</h4>
+    <p>O aplicativo pode coletar automaticamente informações sobre a geolocalização do usuário, com seu consentimento. Além disso, são registrados dados sobre o dispositivo e sistema operacional utilizado, bem como interações dentro do aplicativo, como mensagens enviadas e visualizações de lojas.</p>
+  
+    <h3>2. Finalidade dos Dados</h3>
+    <p>Os dados coletados são utilizados para criar e gerenciar a conta do usuário no aplicativo. A geolocalização permite a exibição de usuários, lojas e grupos próximos. Além disso, as informações são usadas para facilitar a comunicação entre usuários e lojas, personalizar a experiência, garantir a segurança do aplicativo e enviar notificações sobre interações, novidades e ofertas.</p>
+  
+    <h3>3. Compartilhamento de Dados</h3>
+    <p>Os dados dos usuários não são vendidos ou compartilhados com terceiros para fins comerciais. No entanto, algumas informações podem ser exibidas para outros usuários, como nome, foto e localização aproximada. Também podemos compartilhar informações com autoridades competentes, se exigido por lei, e com prestadores de serviço que auxiliam na infraestrutura do aplicativo.</p>
+  
+    <h3>4. Armazenamento e Segurança</h3>
+    <p>Os dados são armazenados em servidores seguros e protegidos por medidas técnicas e organizacionais para evitar acessos não autorizados. Caso o usuário exclua sua conta, as informações serão removidas dos servidores em até 30 dias, exceto quando houver necessidade legal de retenção.</p>
+  
+    <h3>5. Seus Direitos</h3>
+    <p>O usuário tem o direito de acessar seus dados armazenados, solicitar a correção de informações incorretas, pedir a exclusão de dados e revogar o consentimento para o uso de determinados dados, como a geolocalização. Para exercer esses direitos, basta entrar em contato pelo e-mail.</p>
+  
+    <h3>6. Cookies e Tecnologias de Rastreamento</h3>
+    <p>O aplicativo pode utilizar cookies e tecnologias semelhantes para melhorar a experiência do usuário. Essas tecnologias ajudam a autenticar usuários, personalizar conteúdo e aprimorar a segurança do sistema. O usuário pode gerenciar suas preferências de cookies nas configurações do dispositivo.</p>
+  
+    <h3>7. Alterações na Política de Privacidade</h3>
+    <p>Esta Política de Privacidade pode ser atualizada periodicamente. Caso ocorram mudanças significativas, os usuários serão notificados por meio do aplicativo ou por e-mail. Recomendamos a verificação regular desta página para se manter informado.</p>
+  
+    <h3>8. Contato</h3>
+    <p>Para dúvidas ou solicitações relacionadas à privacidade e proteção de dados, entre em contato conosco:</p>
+    <p><strong>E-mail:</strong> contato@bwepo.com.br</p>
+  
+    <p>Agradecemos por confiar no <strong>Bwepo</strong>! 🚀</p>
+  
+    <button onclick="togglePrivacyPolicy()">Voltar</button>
+  </div>
+  
+  
 
   <script>
     let currentIndex = 1;
