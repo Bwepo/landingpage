@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
-  <title>Bwepo - Página Fixa</title>
+  <title>Bwepo</title>
   <style>
     * {
       margin: 0;
@@ -203,7 +203,7 @@
   position: fixed; /* Fixa o footer na parte inferior da tela */
   bottom: 0; /* Mantém o footer fixo no rodapé */
   left: 0;
-  background: #f2f2f2; /* Cor de fundo */
+  background: #fff; /* Cor de fundo */
 }
 
     .footer-left, .footer-right, .footer-center {
@@ -368,7 +368,7 @@
       }
     }
 
-   /* Para telas pequenas (Mobile) */
+/* Para telas pequenas (Mobile) */
 @media (max-width: 768px) {
   /* Ajustando título e parágrafo */
   .hero-text h1 {
@@ -383,45 +383,58 @@
   }
 
   /* Ocultando as setas do carrossel */
-  .arrow {
-    display: none;
-  }
+  
 
-  /* Ajustando o container do carousel */
+  /* Ajustando o container para que os cards fiquem centralizados e ocupem toda a largura */
   .carousel-container {
-    margin: 20px auto 0;  /* Reduzindo a margem superior */
-    padding: 0 1rem;      /* Espaçamento lateral */
-    position: relative;
-    max-width: 100%;      /* Para garantir que ocupe a largura total */
-  }
+        margin: 0px auto 0;
+        height: 50;
+        width: 60;
+        margin-top: 180px;
+      }
 
-  /* Desfazendo a disposição em carrossel e empilhando os cards verticalmente */
+  /* Cada card ocupa 100% da largura e altura da tela, como uma mini página */
   .carousel {
-    display: block;       /* Em vez de flex */
-    transform: none;      /* Remove efeitos 3D */
-  }
+        flex-direction: column;
+        margin-top: 180px;
+      }
 
-  .card {
-    position: static;     /* Não fica mais absolute */
-    width: 100%;          /* Cada card ocupa a largura total */
-    max-width: 100%;      /* Garante que não passe do limite */
-    margin: 0 auto 20px;  /* Espaço abaixo de cada card */
-    transform: none;      /* Remove rotação/translação */
-    opacity: 1;           /* Sempre visível */
-    height: auto;         /* Ajusta a altura conforme o conteúdo */
-  }
+      .card {
+        width: 40%;
+        margin-bottom: 20px;
+        margin-top: 50;
+      }
 
+  /* Ajuste para a imagem dentro do card */
   .card-image {
-    height: auto;         /* Ajusta a imagem conforme a largura */
+    width: 100%;
+    height: 50vh; /* Ocupa metade da tela */
+    background-size: cover;
+    background-position: center;
   }
 
+  /* Ajuste do conteúdo do card */
   .card-content {
     font-size: 1rem;
+    padding: 15px;
+    color: #fff;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    color: #00aaff;
+  }
+
+  .card-description {
+    font-size: 1.2rem;
+    max-width: 90%;
+    margin: 10px auto;
   }
 
   /* Ajustando o footer para telas pequenas */
   .footer {
-    position: static;     /* Remove position absolute do footer */
+    position: static; /* Remove posição fixa */
     flex-direction: column;
     text-align: center;
     font-size: 1rem;
@@ -430,9 +443,10 @@
 
   /* Organizando os ícones de download */
   .download-icons {
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative; /* Removendo a posição fixa */
+    top: auto;
+    left: auto;
+    transform: none;
     flex-direction: row;
     gap: 15px;
   }
@@ -441,7 +455,11 @@
     width: 80px;
     height: auto;
   }
+  .privacy-policy {
+    padding: 50;
+  }
 }
+
 
 
     /* Para telas muito pequenas (Mobile Pequeno) */
@@ -491,7 +509,7 @@
         <button class="arrow arrow-left" onclick="moveCarousel(-1)">&#9664;</button>
         <div class="carousel">
           <div class="card" style="transform: rotateY(-40deg) translateX(-350px) scale(0.8); opacity: 0.5;">
-            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
+            <div class="card-image" style="background-image: url('universo.png');"></div>
             <div class="card-title">Conecte-se com Pessoas Perto de Você</div>
             <div class="card-description">No Bwepo, você pode ver quem está próximo a você em um raio de até 1,5 km e iniciar uma conversa no chat.
                  Diferente de redes sociais tradicionais, aqui as interações são baseadas na sua localização em tempo real, permitindo conexões espontâneas e autênticas.</div>
