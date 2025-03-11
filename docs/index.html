@@ -1,664 +1,439 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
-  <title>Bwepo</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bwepo - Conecte-se com o mundo ao seu redor</title>
 
-    html, body {
-      height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden; /* Evita rolagem horizontal desnecessária */
-  /* Remover height: 100% e overflow: hidden */
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Font (Inter) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" />
+  <!-- Ícones do Bootstrap (opcional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+  <style>
+    /* ---------- Reset Básico ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* ---------- Fonte Global ---------- */
+    body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #000;
+  cursor: url('cursor.cur'), auto;
 }
 
-    .main-container {
+
+    
+    /* ---------- Navbar ---------- */
+    .custom-nav {
+      padding: 1rem 0;
+    }
+    .nav-brand {
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+    .lang-select {
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      background-color: #f2f2f2;
-      justify-content: space-between;
-      min-height: 100vh; /* Garante que o container principal ocupe pelo menos toda a tela */
+      align-items: center;
+      gap: 0.25rem;
+      font-weight: 700;
     }
-
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
+    .btn-download {
+      font-weight: 700;
+      border: 2px solid #000;
       background-color: #fff;
-      overflow: hidden;
-      flex: 1; /* Faz com que o conteúdo principal ocupe o espaço disponível */
+      color: #000;
+      transition: all 0.2s ease-in-out;
+      padding: 0.5rem 1rem;
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70%;
-      background: url("pexels-freestockpro-1227513.jpg") center center / cover no-repeat;
-      z-index: 0;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 1;
-      margin-top: 2%;
-      text-align: center;
+    .btn-download:hover {
+      background-color: #000;
       color: #fff;
-      padding: 0 1rem;
     }
-
-    .hero-text h1 {
+    .privacy-link {
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+    }
+    
+    /* ---------- Hero ---------- */
+    .hero-section {
+      position: relative;
+      padding: 2rem 1rem 4rem 1rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .highlight-bar {
+      display: inline-block;
+      background-color: #fff700;
+      color: #000;
+      font-weight: 700;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+    }
+    .hero-title {
       font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin: 1rem 0;
+    }
+    .hero-subtitle {
+      font-size: 1.125rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-cta {
+      background-color: #ff40a0;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      transition: background 0.2s ease-in-out;
+    }
+    .btn-cta:hover {
+      background-color: #e0358e;
+    }
+    .creator-love {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #666;
+    }
+    
+    /* ---------- Forma Colorida (Gradient) ---------- */
+    .color-shape {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      bottom: -80px;
+      right: -80px;
+      transform: rotate(-15deg);
+      border-radius: 2rem;
+      z-index: 0;
+      opacity: 0.8;
+    }
+    
+    /* ---------- Download Section ---------- */
+    .download-section {
+      padding: 2rem 1rem;
+      text-align: center;
+      background-color: #f8f8f8;
+    }
+    .download-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
       margin-bottom: 1rem;
     }
-
-    .hero-text p {
-      font-size: 1.2rem;
-      line-height: 1.4;
+    
+    /* ---------- Funcionalidades ---------- */
+    .features-section {
+      padding: 4rem 1rem;
+      background-color: #f8f8f8;
     }
-
-    .carousel-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 320px auto 0;
-      perspective: 1200px;
+    .features-section h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      text-align: center;
     }
-
-    .carousel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease-in-out;
-      width: 100%;
-      position: relative;
-    }
-
-    .card {
-      width: 35%;
-      height: 580px;
-      background-color: #373737;
+    .feature-card {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
       border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-weight: bold;
+      padding: 1.5rem;
       text-align: center;
-      position: absolute;
-      transition: transform 0.5s, opacity 0.5s;
-      color: #fff;
-      padding: 10px;
-      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-height: 400px;
     }
-
-    .card-image {
-      width: 100%;
-      height: 40%;
-      background-size: cover;
-      background-position: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
-    .card-content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      font-size: 1.2rem;
+    .feature-card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
-
-    .arrow {
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(50, 50, 50, 0.7);
-      color: #ddd;
-      border: none;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: background 0.3s ease-in-out, transform 0.2s;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    .arrow:hover {
-      background-color: rgba(50, 50, 50, 0.9);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .arrow-left {
-      left: 15px;
-    }
-
-    .arrow-right {
-      right: 15px;
-    }
-
-    .arrow::before {
-      content: "\276E";
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .arrow-right::before {
-      content: "\276F";
-    }
-
-    .cta-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fafafa;
-      margin-top: 50px;
-      padding: 20px 0;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-
-    .card-title {
+    .feature-card h5 {
       font-size: 1.5rem;
-      margin-top: 15px;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
     }
-
-    .card-description {
-      font-size: 1.1rem;
-      padding: 15px;
+    .feature-card p {
+      font-size: 1rem;
+      color: #555;
     }
-
-    .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #333;
-  position: fixed; /* Fixa o footer na parte inferior da tela */
-  bottom: 0; /* Mantém o footer fixo no rodapé */
-  left: 0;
-  background: #fff; /* Cor de fundo */
+    
+    /* ---------- Privacy Policy Section ---------- */
+    /* Seção de Política de Privacidade */
+.privacy-policy-section {
+  padding: 3rem 1rem;
+  background-color: #fff; /* ou outra cor de fundo desejada */
+  color: #000;           /* cor do texto */
+  line-height: 1.6;      /* espaçamento entre linhas */
 }
 
-    .footer-left, .footer-right, .footer-center {
-      display: flex;
-      align-items: center;
-    }
+.privacy-policy-section .policy-main-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
 
-    .footer-center {
-      text-align: center;
-      flex: 1;
-      justify-content: center;
-    }
+.privacy-policy-section .policy-update {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
 
-    .footer-left a, .footer-right a {
-      color: #333;
-      text-decoration: none;
-      margin: 0 15px;
-      transition: color 0.3s;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
+.privacy-policy-section .policy-intro {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
 
-    .footer-left a:hover, .footer-right a:hover {
-      color: #007bff;
-    }
+.privacy-policy-section .policy-numbered-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
 
-    .download-icons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .download-icons img {
-      width: 150px;
-      height: auto;
-      cursor: pointer;
-    }
-   .privacy-policy {
-  display: none; /* Oculto por padrão */
-  width: 100%;
-  min-height: 100vh; /* Ocupa toda a tela */
-  padding: 50px 20px;
-  background: #000; /* Fundo preto */
-  color: #fff; /* Texto branco para contraste */
+.privacy-policy-section .policy-subheading {
   font-size: 1.2rem;
-  line-height: 1.6; 
-  text-align: center;
-  box-shadow: 0px -5px 15px rgba(255, 255, 255, 0.1); /* Sombra suave */
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.privacy-policy h2 {
-  margin-bottom: 20px;
-  color: #00aaff; /* Azul vibrante para o título */
+.privacy-policy-section p {
+  margin-bottom: 1rem;
 }
 
-.privacy-policy p {
-  max-width: 800px;
-  margin: 0 auto 20px; /* Mantém um bom espaçamento */
+.privacy-policy-section .policy-thanks {
+  margin-top: 2rem;
+  font-weight: 600;
   font-size: 1rem;
 }
 
-.privacy-policy button {
-  display: inline-block;
-  margin: 30px auto;
-  padding: 12px 25px;
-  background-color: #00aaff; /* Azul vibrante */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-}
-
-.privacy-policy button:hover {
-  background-color: #0088cc; /* Azul mais escuro ao passar o mouse */
-  transform: scale(1.05);
-}
-
-
-    /* Media Queries para responsividade */
-
-    /* Para telas muito grandes (Desktops Grandes) */
-    @media (min-width: 1920px) {
-      .hero-text h1 {
-        font-size: 4rem;
-      }
-
-      .hero-text p {
-        font-size: 1.4rem;
-      }
-
-      .card {
-        width: 32%;
-      }
-
-      .footer {
-        font-size: 1.2rem;
+    
+    /* ---------- Footer ---------- */
+    footer {
+      background-color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 2rem;
+    }
+    
+    /* ---------- Responsividade ---------- */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2rem; }
+      .color-shape {
+        width: 200px;
+        height: 200px;
+        bottom: -40px;
+        right: -40px;
       }
     }
-
-    /* Para telas grandes (Desktops) */
-    @media (min-width: 1440px) and (max-width: 1919px) {
-      .hero-text h1 {
-        font-size: 3.5rem;
-      }
-
-      .hero-text p {
-        font-size: 1.3rem;
-      }
-
-      .card {
-        width: 32%;
-      }
-
-      .footer {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Para telas médias (Tablets) */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .hero-text h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-text p {
-        font-size: 1.1rem;
-      }
-
-      .carousel-container {
-        margin: 320px auto 0;
-      }
-
-      .carousel {
-        flex-direction: column;
-      }
-
-      .card {
-        width: 40%;
-        margin-bottom: 20px;
-        margin-top: 50;
-      }
-
-      .footer {
-        flex-direction: column;
-        text-align: center;
-        font-size: 1rem;
-      }
-
-      .download-icons {
-        top: 10px;
-        left: 10px;
-        flex-direction: column;
-      }
-
-      .download-icons img {
-        width: 100px;
-      }
-    }
-
-/* Para telas pequenas (Mobile) */
-@media (max-width: 768px) {
-  /* Estilo do título */
-  .hero-text h1 {
-    font-size: 2.2rem; /* Tamanho ajustado para telas menores */
-    margin-bottom: 1rem; /* Espaçamento inferior */
-    text-align: center; /* Centraliza o título */
-    font-weight: 600; /* Tornando o título mais destacado */
-    color: #fff; /* Cor escura para boa legibilidade */
-    margin-top: 110px;
-  }
-
-  /* Estilo do parágrafo */
-  .hero-text p {
-    font-size: 1rem; /* Ajuste do tamanho da fonte para leitura confortável */
-    line-height: 1.5; /* Melhorando a legibilidade */
-    padding: 0 1rem; /* Adiciona espaçamento nas laterais */
-    text-align: center; /* Centraliza o parágrafo */
-    color: #fff; /* Cor suave para o texto */
-   
-  }
-
-  /* Ajustando o container do carrossel */
-  .carousel-container {
-    margin: 0 auto; /* Centraliza o container */
-    margin-top: 180px; /* Espaçamento superior */
-    width: 90%; /* Ajustando a largura para 90% da tela */
-    max-width: 1200px; /* Máximo de largura para não esticar demais em telas grandes */
-    margin-top: 170px;
-  }
-
-  /* Ajustando o carrossel */
-  .carousel {
-    flex-direction: column; /* Organiza os itens em coluna */
-    margin-top: 210px; /* Remove o espaçamento extra no topo */
-  }
-
-  /* Estilo dos cards */
-  .card {
-    width: 90%; /* Os cards ocupam 90% da largura da tela */
-    margin-bottom: 20px; /* Espaçamento entre os cards */
-    margin-top: 10px; /* Margem superior mais suave */
-    background-color: #fff; /* Cor de fundo para os cards */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave nos cards */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
-    overflow: hidden; /* Garante que nada ultrapasse os limites do card */
-  }
-
-  /* Efeito de hover nos cards */
-  .card:hover {
-    transform: translateY(-5px); /* Efeito de elevação */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Aumenta a sombra ao passar o mouse */
-  }
-
-  /* Ajuste para a imagem dentro do card */
-  .card-image {
-    width: 100%; /* Imagem ocupa toda a largura */
-    height: 50vh; /* A imagem ocupa 50% da altura da tela */
-    background-size: cover; /* A imagem é cortada para preencher o espaço */
-    background-position: center; /* A imagem é centralizada */
-  }
-
-  /* Estilo do conteúdo do card */
-  .card-content {
-    padding: 15px;
-    color: #333; /* Texto em uma cor escura para boa legibilidade */
-  }
-
-  .card-title {
-    font-size: 1.6rem; /* Título dentro do card */
-    color: #00aaff; /* Cor destacada */
-    margin-top: 15px;
-  }
-
-  .card-description {
-    font-size: 1.1rem; /* Tamanho de fonte ajustado para o conteúdo do card */
-    margin-top: 10px; /* Espaçamento superior */
-    color: #555; /* Cor do texto mais suave */
-  }
-
-  /* Ajustando o footer para telas pequenas */
-  .footer {
-    position: static; /* Remove a posição fixa */
-    flex-direction: column; /* Organiza o conteúdo do footer em coluna */
-    text-align: center; /* Centraliza o conteúdo */
-    font-size: 1rem; /* Ajuste do tamanho da fonte */
-    padding: 20px 0; /* Espaçamento interno */
-    background-color: #f4f4f4; /* Cor de fundo do footer */
-    color: #333; /* Cor do texto do footer */
-  }
-
-  /* Organizando os ícones de download */
-  .download-icons {
-    display: flex;
-    justify-content: center; /* Centraliza os ícones */
-    gap: 15px; /* Espaçamento entre os ícones */
-    margin-top: 20px; /* Espaço superior para separar dos outros elementos */
-  }
-
-  .download-icons img {
-    width: 80px; /* Tamanho fixo dos ícones */
-    height: auto; /* Altura automática para manter a proporção */
-    justify-content: center; /* Centraliza os ícones */
-  }
-
-  /* Ajuste da política de privacidade */
-  .privacy-policy {
-    margin-top: 30px; /* Espaçamento superior para o link da política de privacidade */
-    font-size: 0.9rem; /* Tamanho da fonte ajustado */
-    color: #888; /* Cor suave para o texto */
-    text-align: center; /* Centraliza o texto */
-  }
-  .arrow{
-    z-index: 1;
-  }
-}
-
-
-
-
-    /* Para telas muito pequenas (Mobile Pequeno) */
-    @media (max-width: 480px) {
-      .hero-text h1 {
-        font-size: 1.5rem;
-      }
-
-      .hero-text p {
-        font-size: 0.9rem;
-      }
-
-      .card {
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 10px;
-      }
-
-      .carousel-container {
-        margin-top: 100px;
-      }
-
-      .carousel {
-        flex-direction: column;
-      }
-    }
-
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <section class="hero">
-      <div class="download-icons">
-        <a href="https://apps.apple.com/br/app/bwepo/id1234567890" target="_blank">
-          <img src="app-store-badge.png" alt="App Store">
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.bwepo" target="_blank">
-          <img src="https://logodownload.org/wp-content/uploads/2017/04/disponivel-google-play-badge.png" alt="Google Play">
-        </a>
-      </div>
-      <div class="hero-text">
-        <h1>Bem-vindo ao Bwepo</h1>
-        <p>Conecte-se e descubra o universo de jogos que preparamos para você.</p>
-      </div>
 
-      <div class="carousel-container">
-        <button class="arrow arrow-left" onclick="moveCarousel(-1)">&#9664;</button>
-        <div class="carousel">
-          <div class="card" style="transform: rotateY(-40deg) translateX(-350px) scale(0.8); opacity: 0.5;">
-            <div class="card-image" style="background-image: url('universo.png');"></div>
-            <div class="card-title">Conecte-se com Pessoas Perto de Você</div>
-            <div class="card-description">No Bwepo, você pode ver quem está próximo a você em um raio de até 1,5 km e iniciar uma conversa no chat.
-                 Diferente de redes sociais tradicionais, aqui as interações são baseadas na sua localização em tempo real, permitindo conexões espontâneas e autênticas.</div>
-          </div>
-
-          <div class="card" style="transform: rotateY(0deg) translateX(0px) scale(1); opacity: 1;">
-            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
-            <div class="card-title">Participe e Crie Comunidades Baseadas em Interesses</div>
-            <div class="card-description">No Bwepo, você pode entrar ou criar comunidades organizadas por temas como esportes, música, tecnologia, e muito mais. As comunidades filtram a interação entre usuários e grupos,
-                 permitindo que você se conecte com pessoas que compartilham os mesmos interesses. Além disso, cada comunidade tem uma timeline exclusiva, onde os membros podem fazer postagens e interagir como em um fórum.</div>
-          </div>
-
-          <div class="card" style="transform: rotateY(40deg) translateX(350px) scale(0.8); opacity: 0.5;">
-            <div class="card-image" style="background-image: url('pexels-freestockpro-1227513.jpg');"></div>
-            <div class="card-title">Grupos Privados para Conversas em Pequenas Redes</div>
-            <div class="card-description">Crie grupos visíveis apenas para pessoas próximas e inicie conversas com quem está por perto. 
-                Você pode convidar qualquer usuário que esteja no seu raio de proximidade e manter as discussões em um ambiente privado e dinâmico.</div>
-          </div>
+  <!-- Navbar -->
+  <nav class="custom-nav">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <!-- Logo / Marca -->
+        <span class="nav-brand">Bwepo</span>
+        <!-- Seletor de Idioma -->
+        <div class="lang-select">
+          <i class="bi bi-globe2"></i>
+          <span>PT</span>
         </div>
-        <button class="arrow arrow-right" onclick="moveCarousel(1)">&#9654;</button>
       </div>
-    </section>
-
-    
-
-
-    <div class="footer">
-      <div class="footer-left">
-        <a href="mailto:contato@bwepo.com">Email: contato@bwepo.com.br</a>
-      </div>
-      <div class="footer-center">
-        <p>© 2025 Bwepo - Todos os direitos reservados.</p>
-      </div>
-      <div class="footer-right">
-        <a href="javascript:void(0);" onclick="togglePrivacyPolicy()">Política de Privacidade</a>
+      <div class="d-flex align-items-center gap-3">
+        <!-- Link para Política de Privacidade -->
+        <a href="#privacy-policy" class="privacy-link">Política de Privacidade</a>
+        <!-- Botão de download -->
+        <a href="#" class="btn btn-download">SIGA-NOS</a>
       </div>
     </div>
-  </div>
+  </nav>
+  <!-- /Navbar -->
 
-  <!-- Conteúdo da Política de Privacidade -->
-  <div id="privacy-policy" class="privacy-policy">
-    <h2>Política de Privacidade</h2>
-  
-    <p><strong>Última atualização:</strong> Fevereiro, 2025</p>
-  
-    <p>Bem-vindo ao <strong>Bwepo</strong>! Nossa missão é conectar pessoas e estabelecimentos por meio da geolocalização de forma segura e transparente. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos seus dados pessoais ao utilizar nosso aplicativo.</p>
-  
-    <p>Ao acessar e utilizar o <strong>Bwepo</strong>, você concorda com os termos desta Política de Privacidade.</p>
-  
-    <h3>1. Dados Coletados</h3>
-  
-    <h4>1.1 Dados fornecidos pelo usuário</h4>
-    <p>O Bwepo coleta informações como nome, e-mail e senha para a criação da conta. Também é possível adicionar uma foto de perfil e uma biografia, caso o usuário deseje. Para contas comerciais, podem ser solicitados dados adicionais, como CNPJ, nome do responsável e telefone de contato.</p>
-  
-    <h4>1.2 Dados coletados automaticamente</h4>
-    <p>O aplicativo pode coletar automaticamente informações sobre a geolocalização do usuário, com seu consentimento. Além disso, são registrados dados sobre o dispositivo e sistema operacional utilizado, bem como interações dentro do aplicativo, como mensagens enviadas e visualizações de lojas.</p>
-  
-    <h3>2. Finalidade dos Dados</h3>
-    <p>Os dados coletados são utilizados para criar e gerenciar a conta do usuário no aplicativo. A geolocalização permite a exibição de usuários, lojas e grupos próximos. Além disso, as informações são usadas para facilitar a comunicação entre usuários e lojas, personalizar a experiência, garantir a segurança do aplicativo e enviar notificações sobre interações, novidades e ofertas.</p>
-  
-    <h3>3. Compartilhamento de Dados</h3>
-    <p>Os dados dos usuários não são vendidos ou compartilhados com terceiros para fins comerciais. No entanto, algumas informações podem ser exibidas para outros usuários, como nome, foto e localização aproximada. Também podemos compartilhar informações com autoridades competentes, se exigido por lei, e com prestadores de serviço que auxiliam na infraestrutura do aplicativo.</p>
-  
-    <h3>4. Armazenamento e Segurança</h3>
-    <p>Os dados são armazenados em servidores seguros e protegidos por medidas técnicas e organizacionais para evitar acessos não autorizados. Caso o usuário exclua sua conta, as informações serão removidas dos servidores em até 30 dias, exceto quando houver necessidade legal de retenção.</p>
-  
-    <h3>5. Seus Direitos</h3>
-    <p>O usuário tem o direito de acessar seus dados armazenados, solicitar a correção de informações incorretas, pedir a exclusão de dados e revogar o consentimento para o uso de determinados dados, como a geolocalização. Para exercer esses direitos, basta entrar em contato pelo e-mail.</p>
-  
-    <h3>6. Cookies e Tecnologias de Rastreamento</h3>
-    <p>O aplicativo pode utilizar cookies e tecnologias semelhantes para melhorar a experiência do usuário. Essas tecnologias ajudam a autenticar usuários, personalizar conteúdo e aprimorar a segurança do sistema. O usuário pode gerenciar suas preferências de cookies nas configurações do dispositivo.</p>
-  
-    <h3>7. Alterações na Política de Privacidade</h3>
-    <p>Esta Política de Privacidade pode ser atualizada periodicamente. Caso ocorram mudanças significativas, os usuários serão notificados por meio do aplicativo ou por e-mail. Recomendamos a verificação regular desta página para se manter informado.</p>
-  
-    <h3>8. Contato</h3>
-    <p>Para dúvidas ou solicitações relacionadas à privacidade e proteção de dados, entre em contato conosco:</p>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- Forma colorida -->
+    <div class="color-shape"></div>
+
+    <!-- Tarja de destaque -->
+    <div class="highlight-bar">EXPERIMENTE GRATUITAMENTE</div>
+
+    <!-- Título Principal -->
+    <h1 class="hero-title">Conecte-se com o mundo ao seu redor</h1>
+
+    <!-- Subtítulo -->
+    <p class="hero-subtitle">
+      Descubra pessoas, comunidades e grupos privados próximos a você. Aproveite experiências autênticas e dinâmicas!
+    </p>
+
+    <!-- Botão CTA -->
+    <a href="#" class="btn btn-cta">BAIXE AGORA</a>
+
+    <!-- Texto de aprovação -->
+    <div class="creator-love">Conectado por milhares de usuários</div>
+  </section>
+  <!-- /Hero Section -->
+
+  <!-- Download Section -->
+  <section class="download-section">
+    <div class="container">
+      <h2>Disponível para iOS e Android</h2>
+      <div class="d-flex justify-content-center align-items-center gap-3">
+        <a href="https://apps.apple.com/br/app/bwepo/id1234567890" target="_blank">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" style="height:50px;">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.bwepo" target="_blank">
+          <img src="https://logodownload.org/wp-content/uploads/2017/04/disponivel-google-play-badge.png" alt="Google Play" style="height:50px;">
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- /Download Section -->
+
+  <!-- Funcionalidades Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2>Funcionalidades do Bwepo</h2>
+      <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1741334632363-58022899ce91?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Conexão Local">
+            <h5>Conexão Local</h5>
+            <p>Veja quem está próximo a você em um raio de até 1,5 km e inicie conversas instantâneas.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1741334632363-58022899ce91?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Comunidades Temáticas">
+            <h5>Comunidades Temáticas</h5>
+            <p>Participe ou crie comunidades baseadas em interesses como esportes, música, tecnologia e muito mais.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1741334632363-58022899ce91?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Grupos Privados">
+            <h5>Grupos Privados</h5>
+            <p>Crie grupos exclusivos para conversas em pequenas redes, mantendo um ambiente seguro e dinâmico.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Funcionalidades Section -->
+
+  <!-- Privacy Policy Section -->
+  <!-- Privacy Policy Section -->
+<section id="privacy-policy" class="privacy-policy-section">
+  <div class="container">
+
+    <!-- Título Principal da Seção -->
+    <h2 class="policy-main-title">Política de Privacidade</h2>
+    <p class="policy-update"><strong>Última atualização:</strong> Fevereiro, 2025</p>
+
+    <!-- Parágrafo inicial -->
+    <p class="policy-intro">
+      Bem-vindo ao <strong>Bwepo</strong>! Nossa missão é conectar pessoas e estabelecimentos por meio da geolocalização de forma segura e transparente. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos seus dados pessoais ao utilizar nosso aplicativo.
+    </p>
+    <p class="policy-intro">
+      Ao acessar e utilizar o <strong>Bwepo</strong>, você concorda com os termos desta Política de Privacidade.
+    </p>
+
+    <!-- Seção 1: Dados Coletados -->
+    <h3 class="policy-numbered-heading">1. Como coletamos dados pessoais</h3>
+
+    <!-- Subseção 1.1 -->
+    <h4 class="policy-subheading">1.1 Dados fornecidos pelo usuário</h4>
+    <p>
+      O Bwepo coleta informações como nome, e-mail e senha para a criação da conta. Também é possível adicionar uma foto de perfil e uma biografia, caso o usuário deseje. Para contas comerciais, podem ser solicitados dados adicionais, como CNPJ, nome do responsável e telefone de contato.
+    </p>
+
+    <!-- Subseção 1.2 -->
+    <h4 class="policy-subheading">1.2 Dados coletados automaticamente</h4>
+    <p>
+      O aplicativo pode coletar automaticamente informações sobre a geolocalização do usuário, com seu consentimento. Além disso, são registrados dados sobre o dispositivo e sistema operacional utilizado, bem como interações dentro do aplicativo, como mensagens enviadas e visualizações de lojas.
+    </p>
+
+    <!-- Seção 2: Finalidade dos Dados -->
+    <h3 class="policy-numbered-heading">2. Finalidade dos Dados</h3>
+    <p>
+      Os dados coletados são utilizados para criar e gerenciar a conta do usuário no aplicativo. A geolocalização permite a exibição de usuários, lojas e grupos próximos. Além disso, as informações são usadas para facilitar a comunicação entre usuários e lojas, personalizar a experiência, garantir a segurança do aplicativo e enviar notificações sobre interações, novidades e ofertas.
+    </p>
+
+    <!-- Seção 3: Compartilhamento de Dados -->
+    <h3 class="policy-numbered-heading">3. Compartilhamento de Dados</h3>
+    <p>
+      Os dados dos usuários não são vendidos ou compartilhados com terceiros para fins comerciais. No entanto, algumas informações podem ser exibidas para outros usuários, como nome, foto e localização aproximada. Também podemos compartilhar informações com autoridades competentes, se exigido por lei, e com prestadores de serviço que auxiliam na infraestrutura do aplicativo.
+    </p>
+
+    <!-- Seção 4: Armazenamento e Segurança -->
+    <h3 class="policy-numbered-heading">4. Armazenamento e Segurança</h3>
+    <p>
+      Os dados são armazenados em servidores seguros e protegidos por medidas técnicas e organizacionais para evitar acessos não autorizados. Caso o usuário exclua sua conta, as informações serão removidas dos servidores em até 30 dias, exceto quando houver necessidade legal de retenção.
+    </p>
+
+    <!-- Seção 5: Seus Direitos -->
+    <h3 class="policy-numbered-heading">5. Seus Direitos</h3>
+    <p>
+      O usuário tem o direito de acessar seus dados armazenados, solicitar a correção de informações incorretas, pedir a exclusão de dados e revogar o consentimento para o uso de determinados dados, como a geolocalização. Para exercer esses direitos, basta entrar em contato pelo e-mail.
+    </p>
+
+    <!-- Seção 6: Cookies e Tecnologias de Rastreamento -->
+    <h3 class="policy-numbered-heading">6. Cookies e Tecnologias de Rastreamento</h3>
+    <p>
+      O aplicativo pode utilizar cookies e tecnologias semelhantes para melhorar a experiência do usuário. Essas tecnologias ajudam a autenticar usuários, personalizar conteúdo e aprimorar a segurança do sistema. O usuário pode gerenciar suas preferências de cookies nas configurações do dispositivo.
+    </p>
+
+    <!-- Seção 7: Alterações na Política de Privacidade -->
+    <h3 class="policy-numbered-heading">7. Alterações na Política de Privacidade</h3>
+    <p>
+      Esta Política de Privacidade pode ser atualizada periodicamente. Caso ocorram mudanças significativas, os usuários serão notificados por meio do aplicativo ou por e-mail. Recomendamos a verificação regular desta página para se manter informado.
+    </p>
+
+    <!-- Seção 8: Contato -->
+    <h3 class="policy-numbered-heading">8. Contato</h3>
+    <p>
+      Para dúvidas ou solicitações relacionadas à privacidade e proteção de dados, entre em contato conosco:
+    </p>
     <p><strong>E-mail:</strong> contato@bwepo.com.br</p>
-  
-    <p>Agradecemos por confiar no <strong>Bwepo</strong>! 🚀</p>
-  
-    <button onclick="togglePrivacyPolicy()">Voltar</button>
+
+    <p class="policy-thanks">
+      Agradecemos por confiar no <strong>Bwepo</strong>! 🚀
+    </p>
   </div>
-  
-  
+</section>
 
-  <script>
-    let currentIndex = 1;
-    const cards = document.querySelectorAll('.card');
+  <!-- /Privacy Policy Section -->
 
-    function updateCards() {
-      const positions = [
-        { rotate: '-40deg', translate: '-350px', scale: '0.8', opacity: '0.5' },
-        { rotate: '0deg', translate: '0px', scale: '1', opacity: '1' },
-        { rotate: '40deg', translate: '350px', scale: '0.8', opacity: '0.5' }
-      ];
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Bwepo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-      cards.forEach((card, i) => {
-        let posIndex = (i - currentIndex + cards.length) % cards.length;
-        card.style.transform = `rotateY(${positions[posIndex].rotate}) translateX(${positions[posIndex].translate}) scale(${positions[posIndex].scale})`;
-        card.style.opacity = positions[posIndex].opacity;
-      });
-    }
-
-    function moveCarousel(direction) {
-      currentIndex = (currentIndex + direction + cards.length) % cards.length;
-      updateCards();
-    }
-
-    function togglePrivacyPolicy() {
-  let privacyPolicy = document.getElementById("privacy-policy");
-
-  if (privacyPolicy.style.display === "none" || privacyPolicy.style.display === "") {
-    privacyPolicy.style.display = "block"; // Exibe a política
-    privacyPolicy.scrollIntoView({ behavior: "smooth" }); // Rola suavemente até a seção
-  } else {
-    privacyPolicy.style.display = "none"; // Oculta a política
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Volta ao topo ao fechar
-  }
-}
-
-
-  </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
