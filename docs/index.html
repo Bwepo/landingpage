@@ -302,7 +302,7 @@
   <!-- /Hero Section -->
 
   <!-- Download Section -->
-  <section class="download-section">
+  <section class="download-section" id="download-section">
     <div class="container">
       <h2>Disponível para iOS e Android</h2>
       <div class="d-flex justify-content-center align-items-center gap-3">
@@ -332,7 +332,6 @@
         <div class="col-md-4 mb-4">
           <div class="feature-card">
             <img src="vetorpost2.svg" alt="Conexão Local">
-            alt="Comunidades Temáticas">
             <h5>Comunidades Temáticas</h5>
             <p>Participe ou crie comunidades personalizadas para se conectar com pessoas que compartilham dos mesmos interesses que você. Seja uma comunidade do seu evento musical favorito, da sua faculdade, do seu time de futebol ou até mesmo da sua família.</p>
           </div>
@@ -441,5 +440,17 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Seleciona o botão e a seção de download
+    const btnCta = document.querySelector('.btn-cta');
+    const downloadSection = document.getElementById('download-section');
+  
+    // Adiciona o evento de clique ao botão
+    btnCta.addEventListener('click', function(event) {
+      event.preventDefault();  // Previne o comportamento padrão do link
+      downloadSection.scrollIntoView({ behavior: 'smooth' });  // Rola suavemente até a seção
+    });
+  </script>
 </body>
 </html>
