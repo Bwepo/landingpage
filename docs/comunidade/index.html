@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecionando para o app Bwepo...</title>
+    <script>
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      const communityId = getQueryParam('id');
+      const fallbackAndroid = 'https://play.google.com/store/apps/details?id=com.matheusener.bwepo';
+      const fallbackIOS = 'https://apps.apple.com/app/id1234567890'; // <-- Substitua depois pelo ID real
+
+      if (communityId) {
+        const deepLink = `bwepo://infocomunidades/${communityId}`;
+        window.location.href = deepLink;
+
+        setTimeout(() => {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+          window.location.href = isIOS ? fallbackIOS : fallbackAndroid;
+        }, 2000);
+      } else {
+        document.write('<p>Erro: Comunidade não encontrada. Verifique o link.</p>');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecionando para a comunidade no app Bwepo...</p>
+  </body>
+</html>
