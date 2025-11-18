@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Redirecionando para a loja no app Bwepo...</title>
+    <script>
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      const storeId = getQueryParam('id');
+
+      const fallbackAndroid =
+        'https://play.google.com/store/apps/details?id=com.azura.bwepodois&hl=pt_BR';
+
+      const fallbackIOS =
+        'https://apps.apple.com/br/app/bwepo/id6743187782';
+
+      if (storeId) {
+        const deepLink = `bwepo://loja/${storeId}`;
+
+        // tenta abrir o app
+        window.location.href = deepLink;
+
+        // caso o app não abra, envia para a loja após 2s
+        setTimeout(() => {
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+          window.location.href = isIOS ? fallbackIOS : fallbackAndroid;
+        }, 2000);
+      } else {
+        document.write('<p>Erro: Loja não encontrada. Verifique o link.</p>');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecionando para a loja no app Bwepo...</p>
+  </body>
+</html>
