@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Abrindo produto no Bwepo</title>
+
+  <meta
+    name="description"
+    content="Veja este produto no aplicativo Bwepo."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f7f7f7;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 24px;
+      border-radius: 22px;
+      background: #ffffff;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0 0 20px;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    .button {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 14px;
+      background: #ff6b35;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .secondary {
+      background: #eeeeee;
+      color: #222222;
+    }
+
+    .error {
+      display: none;
+      margin-top: 16px;
+      color: #b42318;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Produto no Bwepo</h1>
+
+    <p id="statusText">
+      Estamos abrindo este produto no aplicativo.
+    </p>
+
+    <a id="openAppButton" class="button" href="#">
+      Abrir no Bwepo
+    </a>
+
+    <a
+      id="storeButton"
+      class="button secondary"
+      href="#"
+      style="display: none"
+    >
+      Baixar o aplicativo
+    </a>
+
+    <p id="errorText" class="error">
+      O link do produto está incompleto ou inválido.
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+
+      const storeId = params.get('storeId');
+      const productId = params.get('productId');
+
+      const statusText = document.getElementById('statusText');
+      const openAppButton = document.getElementById('openAppButton');
+      const storeButton = document.getElementById('storeButton');
+      const errorText = document.getElementById('errorText');
+
+      if (!storeId || !productId) {
+        statusText.textContent =
+          'Não foi possível identificar o produto.';
+
+        openAppButton.style.display = 'none';
+        errorText.style.display = 'block';
+
+        return;
+      }
+
+      const deepLink =
+        'bwepo://produto' +
+        '?storeId=' + encodeURIComponent(storeId) +
+        '&productId=' + encodeURIComponent(productId);
+
+      const androidStore =
+        'https://play.google.com/store/apps/details?id=com.azura.bwepodois';
+
+      const iosStore =
+        'https://apps.apple.com/br/app/bwepo/id6743187782';
+
+      const userAgent = navigator.userAgent || navigator.vendor || '';
+
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+
+      const appStoreUrl = isIOS ? iosStore : androidStore;
+
+      openAppButton.href = deepLink;
+      storeButton.href = appStoreUrl;
+
+      function openApp() {
+        const startedAt = Date.now();
+
+        window.location.href = deepLink;
+
+        setTimeout(function () {
+          const elapsed = Date.now() - startedAt;
+
+          if (
+            elapsed < 3000 &&
+            !document.hidden &&
+            (isAndroid || isIOS)
+          ) {
+            statusText.textContent =
+              'O aplicativo não abriu? Você pode baixá-lo abaixo.';
+
+            storeButton.style.display = 'flex';
+          }
+        }, 1800);
+      }
+
+      openAppButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        openApp();
+      });
+
+      if (isAndroid || isIOS) {
+        setTimeout(openApp, 350);
+      } else {
+        statusText.textContent =
+          'Abra este link pelo celular para visualizar o produto no aplicativo Bwepo.';
+      }
+    })();
+  </script>
+</body>
+</html>
