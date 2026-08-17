@@ -1,463 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bwepo - Conecte-se com o mundo ao seu redor</title>
-  <link rel="icon" type="image/svg+xml" href="icone.svg" />
-
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Google Font (Inter) -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" />
-  <!-- Ícones do Bootstrap (opcional) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-
-  <style>
-    /* ---------- Reset Básico ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    /* ---------- Fonte Global ---------- */
-    body {
-  font-family: 'Inter', sans-serif;
-  background-color: #fff;
-  color: #000;
-  cursor: url('cursor.cur'), auto;
-}
-
-
-    
-    /* ---------- Navbar ---------- */
-    .custom-nav {
-      padding: 1rem 0;
-    }
-    .nav-brand {
-      font-weight: 900;
-      font-size: 1.25rem;
-    }
-    .lang-select {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-weight: 700;
-    }
-    .btn-download {
-      font-weight: 700;
-      border: 2px solid #000;
-      background-color: #fff;
-      color: #000;
-      transition: all 0.2s ease-in-out;
-      padding: 0.5rem 1rem;
-    }
-    .btn-download:hover {
-      background-color: #000;
-      color: #fff;
-    }
-    .privacy-link {
-      font-weight: 700;
-      color: #000;
-      text-decoration: none;
-    }
-    
-    /* ---------- Hero ---------- */
-    .hero-section {
-      position: relative;
-      padding: 2rem 1rem 4rem 1rem;
-      text-align: center;
-      overflow: hidden;
-    }
-    .highlight-bar {
-      display: inline-block;
-      background-color: #fff700;
-      color: #000;
-      font-weight: 700;
-      padding: 0.3rem 0.6rem;
-      border-radius: 0.25rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      font-size: 0.875rem;
-    }
-    .hero-title {
-      font-size: 3rem;
-      font-weight: 900;
-      line-height: 1.2;
-      margin: 1rem 0;
-    }
-    .hero-subtitle {
-      font-size: 1.125rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .btn-cta {
-      background-color: #ff40a0;
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      transition: background 0.2s ease-in-out;
-    }
-    .btn-cta:hover {
-      background-color: #e0358e;
-    }
-    .creator-love {
-      margin-top: 1rem;
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: #666;
-    }
-    
-    /* ---------- Forma Colorida (Gradient) ---------- */
-    .color-shape {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(135deg, #ff00ff, #00ffff);
-      bottom: -80px;
-      right: -80px;
-      transform: rotate(-15deg);
-      border-radius: 2rem;
-      z-index: 0;
-      opacity: 0.8;
-    }
-    
-    /* ---------- Download Section ---------- */
-    .download-section {
-      padding: 2rem 1rem;
-      text-align: center;
-      background-color: #f8f8f8;
-    }
-    .download-section h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    /* ---------- Funcionalidades ---------- */
-    .features-section {
-      padding: 4rem 1rem;
-      background-color: #f8f8f8;
-    }
-    .features-section h2 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    .feature-card {
-      background-color: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      min-height: 400px;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .feature-card img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-    .feature-card h5 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .feature-card p {
-      font-size: 1rem;
-      color: #555;
-    }
-    
-    /* ---------- Privacy Policy Section ---------- */
-    /* Seção de Política de Privacidade */
-.privacy-policy-section {
-  padding: 3rem 1rem;
-  background-color: #fff; /* ou outra cor de fundo desejada */
-  color: #000;           /* cor do texto */
-  line-height: 1.6;      /* espaçamento entre linhas */
-}
-
-.privacy-policy-section .policy-main-title {
-  font-size: 2rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-}
-
-.privacy-policy-section .policy-update {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 1.5rem;
-}
-
-.privacy-policy-section .policy-intro {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.privacy-policy-section .policy-numbered-heading {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-.privacy-policy-section .policy-subheading {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.privacy-policy-section p {
-  margin-bottom: 1rem;
-}
-
-.privacy-policy-section .policy-thanks {
-  margin-top: 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-    
-    /* ---------- Footer ---------- */
-    footer {
-      background-color: #fff;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      border-top: 1px solid #e0e0e0;
-      margin-top: 2rem;
-    }
-    
-    /* ---------- Responsividade ---------- */
-    @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .color-shape {
-    width: 160px; /* menor que antes */
-    height: 160px;
-    bottom: -30px;
-    right: -55px; /* mais à direita */
-    z-index: -1;
-    pointer-events: none;
-  }
-}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153f32">
+  <meta name="description" content="Bwepo conecta consumidores a feiras, barracas, feirantes e produtos locais. Descubra feiras próximas e compre diretamente de quem faz.">
+  <title>Bwepo — A feira começa aqui</title>
+  <link rel="icon" type="image/svg+xml" href="icone.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="#inicio" aria-label="Bwepo - início"><img src="assets-marketplace/logo-bwepo-original.png" alt="Bwepo"></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a><a href="#como-funciona">Como funciona</a><a href="#feiras">Feiras</a><a href="#para-quem-compra">Para quem compra</a><a href="#para-feirantes">Para feirantes</a>
+    </nav>
+    <a class="btn btn-orange nav-cta" href="#download">Conhecer o Bwepo</a>
+  </div>
+</header>
 
-  <!-- Navbar -->
-  <nav class="custom-nav">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center gap-3">
-        <!-- Logo / Marca -->
-        <span class="nav-brand">Bwepo</span>
-        <!-- Seletor de Idioma -->
-        <div class="lang-select">
-          <i class="bi bi-globe2"></i>
-          <span>PT-BR</span>
-        </div>
-      </div>
-      <div class="d-flex align-items-center gap-3">
-        <!-- Link para Política de Privacidade -->
-        <a href="#privacy-policy" class="privacy-link">Política de Privacidade</a>
-        <!-- Botão de download -->
-        <a href="https://www.instagram.com/bwepoapp" class="btn btn-download" target="_blank">
-          <i class="fab fa-instagram"></i> SIGA-NOS
-      </a>
-      
-      <!-- Adicione o Font Awesome caso ainda não tenha -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-      </div>
+<main>
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow pill">Feiras · barracas · produtos</span>
+      <h1>A feira começa no Bwepo.</h1>
+      <p>Descubra feiras perto de você, encontre barracas e produtos e compre diretamente de quem faz.</p>
+      <div class="hero-actions"><a class="btn btn-orange" href="#download">Conhecer o Bwepo</a><a class="btn btn-glass" href="#para-feirantes">Sou feirante</a></div>
+      <small>Feiras, barracas, feirantes e produtos locais em um só lugar.</small>
     </div>
-  </nav>
-  <!-- /Navbar -->
-
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <!-- Forma colorida -->
-    <div class="color-shape"></div>
-
-    <!-- Tarja de destaque -->
-    <div class="highlight-bar">EXPERIMENTE GRATUITAMENTE</div>
-
-    <!-- Título Principal -->
-    <h1 class="hero-title">Conecte-se com o mundo ao seu redor</h1>
-
-    <!-- Subtítulo -->
-    <p class="hero-subtitle">
-      Conecte-se com pessoas, lojas e grupos privados próximos a você. Aproveite experiências autênticas e dinâmicas!
-    </p>
-
-    <!-- Botão CTA -->
-    <a href="#" class="btn btn-cta">BAIXE AGORA</a>
-
-    <!-- Texto de aprovação -->
-    <div class="creator-love">Conectado por milhares de usuários</div>
-  </section>
-  <!-- /Hero Section -->
-
-  <!-- Download Section -->
-  <section class="download-section" id="download-section">
-    <div class="container">
-      <h2>Disponível para iOS e Android</h2>
-      <div class="d-flex justify-content-center align-items-center gap-3">
-        <a href="https://apps.apple.com/br/app/bwepo/id6743187782" target="_blank">
-          <img src="https://vwapps.volkswagen.com.br/Servicebook/Content/Identificacao/img/apple_store_icon.svg" alt="App Store" style="height:50px;">
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.azura.bwepodois" target="_blank">
-          <img src="https://logodownload.org/wp-content/uploads/2017/04/disponivel-google-play-badge.png" alt="Google Play" style="height:50px;">
-        </a>
-      </div>
+    <div class="mockup-column">
+      <div class="phone" aria-label="Demonstração visual da plataforma Bwepo">
+        <div class="notch"></div><div class="phone-head"><span>BWEPO</span><div class="where">⌖ <strong>Perto de você</strong><b>FEIRA HOJE</b></div><div class="search">⌕ <i>Buscar produtos, barracas...</i></div></div>
+        <div class="phone-body"><div class="chips"><b>Hortifruti</b><span>Queijos</span><span>Doces</span><span>Comidas</span></div>
+          <article class="mini"><img src="assets-marketplace/produto-1.jpg"><div><strong>Tomate caqui colhido hoje</strong><span>Barraca da Dona Marta</span><b>R$ 12,90</b></div><em>Ver</em></article>
+          <article class="mini"><img src="assets-marketplace/produto-2.jpg"><div><strong>Cesta de verduras da semana</strong><span>Barraca da Dona Marta</span><b>R$ 39,00</b></div><em>Ver</em></article>
+          <article class="mini"><img src="assets-marketplace/produto-3.jpg"><div><strong>Queijo artesanal maturado</strong><span>Queijaria do Tião</span><b>R$ 68,00</b></div><em>Ver</em></article>
+        </div>
+      </div><small>Demonstração visual da plataforma</small>
     </div>
-  </section>
-  <!-- /Download Section -->
-
-  <!-- Funcionalidades Section -->
-  <section class="features-section">
-    <div class="container">
-      <h2>Funcionalidades do Bwepo</h2>
-      <div class="row mt-4">
-        <div class="col-md-4 mb-4">
-          <div class="feature-card">
-            <img src="vetorpost1.svg" alt="Conexão Local">
-            <h5>Conexão Local</h5>
-            <p>Veja quem está próximo a você em um raio de até 1,5 km e inicie conversas instantâneas.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="feature-card">
-            <img src="vetorpost2.svg" alt="Conexão Local">
-            <h5>Lojas Próximas</h5>
-            <p>Encontre estabelecimentos locais em tempo real, veja os produtos disponíveis e inicie uma conversa direta com os lojistas da sua região. Apoie o comércio local com praticidade e proximidade.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="feature-card">
-            <img src="vetorpost3.svg" alt="Grupos Privados">
-            <h5>Grupos Privados</h5>
-            <p>Crie ou entre em grupos exclusivos com pessoas próximas. Compartilhe experiências, ideias e mantenha conversas privadas em um ambiente seguro e colaborativo.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- /Funcionalidades Section -->
-
-  <!-- Privacy Policy Section -->
-  <!-- Privacy Policy Section -->
-<section id="privacy-policy" class="privacy-policy-section">
-  <div class="container">
-
-    <!-- Título Principal da Seção -->
-    <h2 class="policy-main-title">Política de Privacidade</h2>
-    <p class="policy-update"><strong>Última atualização:</strong> Fevereiro, 2025</p>
-
-    <!-- Parágrafo inicial -->
-    <p class="policy-intro">
-      Bem-vindo ao <strong>Bwepo</strong>! Nossa missão é conectar pessoas e estabelecimentos por meio da geolocalização de forma segura e transparente. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos seus dados pessoais ao utilizar nosso aplicativo.
-    </p>
-    <p class="policy-intro">
-      Ao acessar e utilizar o <strong>Bwepo</strong>, você concorda com os termos desta Política de Privacidade.
-    </p>
-
-    <!-- Seção 1: Dados Coletados -->
-    <h3 class="policy-numbered-heading">1. Como coletamos dados pessoais</h3>
-
-    <!-- Subseção 1.1 -->
-    <h4 class="policy-subheading">1.1 Dados fornecidos pelo usuário</h4>
-    <p>
-      O Bwepo coleta informações como nome, e-mail e senha para a criação da conta. Também é possível adicionar uma foto de perfil e uma biografia, caso o usuário deseje. Para contas comerciais, podem ser solicitados dados adicionais, como CNPJ, nome do responsável e telefone de contato.
-    </p>
-
-    <!-- Subseção 1.2 -->
-    <h4 class="policy-subheading">1.2 Dados coletados automaticamente</h4>
-    <p>
-      O aplicativo pode coletar automaticamente informações sobre a geolocalização do usuário, com seu consentimento. Além disso, são registrados dados sobre o dispositivo e sistema operacional utilizado, bem como interações dentro do aplicativo, como mensagens enviadas e visualizações de lojas.
-    </p>
-
-    <!-- Seção 2: Finalidade dos Dados -->
-    <h3 class="policy-numbered-heading">2. Finalidade dos Dados</h3>
-    <p>
-      Os dados coletados são utilizados para criar e gerenciar a conta do usuário no aplicativo. A geolocalização permite a exibição de usuários, lojas e grupos próximos. Além disso, as informações são usadas para facilitar a comunicação entre usuários e lojas, personalizar a experiência, garantir a segurança do aplicativo e enviar notificações sobre interações, novidades e ofertas.
-    </p>
-
-    <!-- Seção 3: Compartilhamento de Dados -->
-    <h3 class="policy-numbered-heading">3. Compartilhamento de Dados</h3>
-    <p>
-      Os dados dos usuários não são vendidos ou compartilhados com terceiros para fins comerciais. No entanto, algumas informações podem ser exibidas para outros usuários, como nome, foto e localização aproximada. Também podemos compartilhar informações com autoridades competentes, se exigido por lei, e com prestadores de serviço que auxiliam na infraestrutura do aplicativo.
-    </p>
-
-    <!-- Seção 4: Armazenamento e Segurança -->
-    <h3 class="policy-numbered-heading">4. Armazenamento e Segurança</h3>
-    <p>
-      Os dados são armazenados em servidores seguros e protegidos por medidas técnicas e organizacionais para evitar acessos não autorizados. Caso o usuário exclua sua conta, as informações serão removidas dos servidores em até 30 dias, exceto quando houver necessidade legal de retenção.
-    </p>
-
-    <!-- Seção 5: Seus Direitos -->
-    <h3 class="policy-numbered-heading">5. Seus Direitos</h3>
-    <p>
-      O usuário tem o direito de acessar seus dados armazenados, solicitar a correção de informações incorretas, pedir a exclusão de dados e revogar o consentimento para o uso de determinados dados, como a geolocalização. Para exercer esses direitos, basta entrar em contato pelo e-mail.
-    </p>
-
-    <!-- Seção 6: Cookies e Tecnologias de Rastreamento -->
-    <h3 class="policy-numbered-heading">6. Cookies e Tecnologias de Rastreamento</h3>
-    <p>
-      O aplicativo pode utilizar cookies e tecnologias semelhantes para melhorar a experiência do usuário. Essas tecnologias ajudam a autenticar usuários, personalizar conteúdo e aprimorar a segurança do sistema. O usuário pode gerenciar suas preferências de cookies nas configurações do dispositivo.
-    </p>
-
-    <!-- Seção 7: Alterações na Política de Privacidade -->
-    <h3 class="policy-numbered-heading">7. Alterações na Política de Privacidade</h3>
-    <p>
-      Esta Política de Privacidade pode ser atualizada periodicamente. Caso ocorram mudanças significativas, os usuários serão notificados por meio do aplicativo ou por e-mail. Recomendamos a verificação regular desta página para se manter informado.
-    </p>
-
-    <!-- Seção 8: Contato -->
-    <h3 class="policy-numbered-heading">8. Contato</h3>
-    <p>
-      Para dúvidas ou solicitações relacionadas à privacidade e proteção de dados, entre em contato conosco:
-    </p>
-    <p><strong>E-mail:</strong> contato@bwepo.com.br</p>
-
-    <p class="policy-thanks">
-      Agradecemos por confiar no <strong>Bwepo</strong>! 🚀
-    </p>
   </div>
 </section>
 
-  <!-- /Privacy Policy Section -->
+<section class="section proposal">
+  <div class="container"><span class="eyebrow">Proposta de valor</span><h2>A feira de sempre, de um jeito novo.</h2>
+    <div class="three-grid"><article class="feature"><div>⌖</div><small>01</small><h3>Descubra</h3><p>Encontre feiras que acontecem perto de você.</p></article><article class="feature"><div>◉</div><small>02</small><h3>Explore</h3><p>Veja barracas, feirantes e produtos antes mesmo de chegar à feira.</p></article><article class="feature"><div>▣</div><small>03</small><h3>Compre</h3><p>Escolha seus produtos e compre diretamente de quem vende.</p></article></div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2025 Bwepo. Todos os direitos reservados.</p>
+<section class="section products" id="para-quem-compra">
+  <div class="container"><span class="eyebrow">Para quem compra</span><div class="title-row"><div><h2>Descubra o que a feira tem de melhor.</h2><p>Conheça uma experiência em que produtos, barracas e feirantes aparecem de forma simples e visual.</p></div><span class="demo">Demonstração da plataforma</span></div>
+    <div class="product-grid">
+      <article class="product"><div class="pic"><img src="assets-marketplace/produto-1.jpg" alt="Tomates em banca de feira"><span>Hortifruti</span></div><div class="product-info"><h3>Tomate caqui colhido hoje</h3><p>Barraca da Dona Marta · Marta Ribeiro</p><small>⌖ Feira da Praça Verde</small><div><strong>R$ 12,90</strong><b>No Bwepo</b></div></div></article>
+      <article class="product"><div class="pic"><img src="assets-marketplace/produto-2.jpg" alt="Cesta de verduras"><span>Hortifruti</span></div><div class="product-info"><h3>Cesta de verduras da semana</h3><p>Barraca da Dona Marta · Marta Ribeiro</p><small>⌖ Feira da Praça Verde</small><div><strong>R$ 39,00</strong><b>No Bwepo</b></div></div></article>
+      <article class="product"><div class="pic"><img src="assets-marketplace/produto-3.jpg" alt="Queijo artesanal"><span>Queijos</span></div><div class="product-info"><h3>Queijo artesanal maturado</h3><p>Queijaria do Tião · Sebastião Alves</p><small>⌖ Feira da Praça Verde</small><div><strong>R$ 68,00</strong><b>No Bwepo</b></div></div></article>
+      <article class="product"><div class="pic"><img src="assets-marketplace/produto-4.jpg" alt="Doces artesanais"><span>Doces</span></div><div class="product-info"><h3>Doces e conservas artesanais</h3><p>Doces da Jandira · Jandira Sousa</p><small>⌖ Feira Orgânica do Largo</small><div><strong>R$ 24,50</strong><b>No Bwepo</b></div></div></article>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<section class="section fairs" id="feiras"><div class="container fair-grid"><div><span class="eyebrow">Feiras próximas</span><h2>Tem uma feira acontecendo perto de você.</h2><p>No Bwepo você vê as feiras da sua região por dia — hoje, amanhã, no fim de semana ou nas próximas datas.</p><div class="filters"><span class="on">Hoje</span><span>Amanhã</span><span>Este fim de semana</span><span>Próximas</span></div></div><article class="fair-card"><div class="fair-img"><img src="assets-marketplace/feira.jpg" alt="Feira ao ar livre"><span>Hoje</span></div><div class="fair-info"><h3>Feira da Praça Verde</h3><p>⌖ Perto de você</p><p>◷ Sábado · 07h — 13h</p><p>▣ Barracas e produtores locais</p><div><span>Hortifruti</span><span>Queijos</span><span>Comidas</span></div></div></article></div></section>
 
-  <script>
-    // Seleciona o botão e a seção de download
-    const btnCta = document.querySelector('.btn-cta');
-    const downloadSection = document.getElementById('download-section');
-  
-    // Adiciona o evento de clique ao botão
-    btnCta.addEventListener('click', function(event) {
-      event.preventDefault();  // Previne o comportamento padrão do link
-      downloadSection.scrollIntoView({ behavior: 'smooth' });  // Rola suavemente até a seção
-    });
-  </script>
-</body>
-</html>
+<section class="how" id="como-funciona"><div class="container how-grid"><div><span class="eyebrow yellow">Como funciona</span><h2>Quatro passos para a feira começar.</h2><p>Do descobrir ao comprar, o Bwepo deixa a feira mais perto de você.</p><div class="steps"><article><i>1</i><div><b>PASSO 1</b><h3>Abra o Bwepo</h3><p>Entre na plataforma e deixe a feira vir até você.</p></div></article><article><i>⌖</i><div><b>PASSO 2</b><h3>Descubra feiras próximas</h3><p>Veja o que está acontecendo na sua região.</p></div></article><article><i>◉</i><div><b>PASSO 3</b><h3>Explore barracas e produtos</h3><p>Conheça os feirantes e o que cada barraca oferece.</p></div></article><article><i>✓</i><div><b>PASSO 4</b><h3>Compre diretamente dos feirantes</h3><p>Escolha e compre de quem faz.</p></div></article></div></div><div class="phone second-phone"><div class="notch"></div><div class="phone-head"><span>BWEPO</span><div class="where">⌖ <strong>Perto de você</strong><b>FEIRA HOJE</b></div><div class="search">⌕ <i>Buscar produtos, barracas...</i></div></div><div class="phone-body"><div class="chips"><b>Hortifruti</b><span>Queijos</span><span>Doces</span></div><article class="mini"><img src="assets-marketplace/produto-1.jpg"><div><strong>Tomate caqui</strong><span>Barraca da Dona Marta</span><b>R$ 12,90</b></div><em>Ver</em></article><article class="mini"><img src="assets-marketplace/produto-2.jpg"><div><strong>Cesta de verduras</strong><span>Barraca da Dona Marta</span><b>R$ 39,00</b></div><em>Ver</em></article><article class="mini"><img src="assets-marketplace/produto-3.jpg"><div><strong>Queijo artesanal</strong><span>Queijaria do Tião</span><b>R$ 68,00</b></div><em>Ver</em></article></div></div></div></section>
+
+<section class="section vendor" id="para-feirantes"><div class="container"><div class="vendor-box"><div class="vendor-photo"><img src="assets-marketplace/feirante.jpg" alt="Feirante usando o celular em sua barraca"></div><div class="vendor-copy"><span class="eyebrow soft">Para feirantes</span><h2>Sua barraca também pode estar no Bwepo.</h2><p>Mostre seus produtos, seja encontrado por novos clientes e continue vendendo antes, durante e depois da feira.</p><div class="benefits"><span>✓ Vitrine digital para seus produtos</span><span>✓ Novos clientes na sua região</span><span>✓ Presença nas feiras em que participa</span><span>✓ Divulgação dos seus produtos</span><span>✓ Maior alcance antes, durante e depois da feira</span></div><a class="btn btn-green" href="mailto:contato@bwepo.com.br">Quero fazer parte do Bwepo</a></div></div></div></section>
+
+<section class="download" id="download"><div class="container download-inner"><div><span class="eyebrow yellow">Conheça o Bwepo</span><h2>A feira está mais perto do que você imagina.</h2><p>Descubra feiras, produtos e pessoas que movimentam o comércio local.</p></div><div class="store-buttons"><a href="https://apps.apple.com/br/app/bwepo/id6743187782" target="_blank" rel="noopener"><img src="app-store-badge.png" alt="Baixar na App Store"></a><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.bwepo" target="_blank" rel="noopener"><span>▶</span><div><small>DISPONÍVEL NO</small><strong>Google Play</strong></div></a></div></div></section>
+</main>
+
+<footer><div class="container footer-grid"><div class="footer-brand"><img src="assets-marketplace/logo-bwepo-original.png" alt="Bwepo"><p>A feira começa no Bwepo. Descubra feiras perto de você e compre de quem faz.</p></div><div><h3>Bwepo</h3><a href="#inicio">Sobre</a><a href="#para-feirantes">Para feirantes</a><a href="https://www.instagram.com/bwepoapp" target="_blank" rel="noopener">Instagram</a></div><div><h3>Jurídico</h3><a href="politica-privacidade.html">Política de Privacidade</a></div><div><h3>Contato</h3><a href="mailto:contato@bwepo.com.br">contato@bwepo.com.br</a><p>Brasil</p></div></div><div class="container footer-bottom"><span>© <span id="year"></span> Bwepo. Todos os direitos reservados.</span><span>Feiras · barracas · produtos · comércio local</span></div></footer>
+<script src="script.js"></script>
+</body></html>
